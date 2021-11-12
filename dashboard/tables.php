@@ -25,7 +25,7 @@ WHERE c.documento = '%s'
 ORDER BY rt.fecha_ingreso DESC";
 $parametros = array($documento);
 $usuarios = $filaAccion->getFetchArray($bd->consultar($sql, $parametros));
-print_r($usuarios);
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +63,7 @@ print_r($usuarios);
           <li class="nav-item active ">
             <a class="nav-link" href="tables.php">
               <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+              <p>Lista</p>
             </a>
           </li>
         </ul>
@@ -85,7 +85,7 @@ print_r($usuarios);
           <div class="collapse navbar-collapse justify-content-end">
             <form class="navbar-form">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="text" value="" class="form-control" placeholder="Buscar...">
                 <button type="submit" class="btn btn-default btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -136,8 +136,8 @@ print_r($usuarios);
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Simple Table</h4>
-                  <p class="card-category"> Here is a subtitle for this table</p>
+                  <h4 class="card-title ">Lista</h4>
+                  <p class="card-category">Consulte el tiempo actual y pagos pendientes</p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -150,7 +150,9 @@ print_r($usuarios);
                         <th>Placa</th>
                         <th>Fecha ingreso</th>
                         <th>Fecha Salida</th>
-                        <th>Timepo en parqueo</th>
+                        <th>Timepo actual</th>
+                        <th>Timepo concurrido</th>
+                        <th>Acción</th>
                       </thead>
                       <tbody>
                         <?php foreach ($usuarios as $usuario){?>
@@ -162,7 +164,13 @@ print_r($usuarios);
                           <td><?php echo ucfirst(strtolower($usuario['placa'])); ?></td>
                           <td><?php echo ucfirst(strtolower($usuario['fecha_ingreso'])); ?></td>
                           <td><?php echo ucfirst(strtolower($usuario['fecha_salida'])); ?></td>
-                          <td><?php echo (!empty($usuario['tiempo']))? ucfirst(strtolower($usuario['tiempo'])): '<div id="hour">00</div><div id="tiempotrnas"></div>';?>  </td>
+                          <td><?php echo (!empty($usuario['tiempo']))? ucfirst(strtolower($usuario['tiempo'])): '<div id="hour">00</div>';?>  </td>
+                          <td>
+                            <div id="tiempotrnas"></div>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-round">Pagar</a>
+                          </td>
                           <input type="hidden" id="hora_desde" value="<?php echo date("H", strtotime($usuario['fecha_ingreso'])); ?>" >
                           <input type="hidden" id="minuto_desde" value="<?php echo date("i", strtotime($usuario['fecha_ingreso'])); ?>" >
                           <input type="hidden" id="hora_registro" value="<?php echo date("H:i", strtotime($usuario['fecha_ingreso'])); ?>" >
@@ -251,7 +259,7 @@ print_r($usuarios);
           }
 
           $("#hour").text( (tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora) + ':' + (tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto) + ':' + (tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo));
-          $('#tiempotrnas').text('Tiempo transcurrido: ' + prefijo(horas) + ':' + prefijo(minutos));
+          $('#tiempotrnas').text(prefijo(horas) + ':' + prefijo(minutos));
       }, 1000);
       }
 

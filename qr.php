@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,7 +60,11 @@
                     $.ajax({
                         url:'http://goparking.jorge.com.co/generate_code.php',
                         type:'POST',
-                        data: {formData:$("#content").val(), ecc:$("#ecc").val(), size:$("#size").val()},
+                        data: {
+                            formData:$("#content").val(), 
+                            ecc:$("#ecc").val(), 
+                            size:$("#size").val()
+                        },
                         success: function(response) {
                             $(".showQRCode").html(response);  
                         },

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GOPARKING</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link rel='stylesheet' type='text/css' media='screen' href="css/style.css">
+    
     <link rel='stylesheet' type='text/css' media='screen' href="css/jquery-ui.css">
     <link rel='stylesheet' type='text/css' media='screen' href="css/document.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >

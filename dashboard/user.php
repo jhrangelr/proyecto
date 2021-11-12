@@ -49,7 +49,7 @@
           <li class="nav-item active ">
             <a class="nav-link" href="tables.php">
               <i class="material-icons">person</i>
-              <p>User Profile</p>
+              <p>Perfil Usuario</p>
             </a>
           </li>
           <li class="nav-item ">
